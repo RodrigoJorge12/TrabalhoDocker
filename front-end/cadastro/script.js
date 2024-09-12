@@ -7,7 +7,7 @@ document.getElementById("btn-salvar").addEventListener("click", async function()
 
     try {
         // Envia a requisição ao backend
-        const response = await fetch("http://localhost:8080/cadastro.php", { 
+        const response = await fetch("http://localhost:9000/cadastro.php", { 
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -21,7 +21,6 @@ document.getElementById("btn-salvar").addEventListener("click", async function()
         if (response.ok) {
             window.location.reload(true);
         } else {
-            console.log(response);
             alert("Erro ao salvar o nome.");
         }
     } catch (error) {

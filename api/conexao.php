@@ -4,13 +4,13 @@ class conexao{
     private PDO $pdo;
 
     public function __construct($host, $dbname, $username, $password) {
-        $dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
-        try {
-            $this->pdo = new PDO($dsn, $username, $password);
-            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            die("Erro de conexão: " . $e->getMessage());
-        }
+        $dsn = "sqlite:host=$host;dbname=$dbname;charset=utf8mb4";
+        $this->pdo = new PDO($dsn, $username, $password);
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "CREATE TABLE IF NOT EXISTS `nomes` (
+            nome VARCHAR(100) NOT NULL
+        )";
+        $this->pdo->query($sql);
     }
 
     public function getConexao(){

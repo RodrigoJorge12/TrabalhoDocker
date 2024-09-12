@@ -11,8 +11,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $nome = $data["nome"];
     $conexao = new conexao("localhost", "tecnologias_sustentaveis", "root", "");
     $pdo = $conexao->getConexao();
-    $sql = "INSERT INTO `nomes` (nome) VALUES ('$nome')";
-    $pdo->query($sql);
+    $stmt = $pdo->prepare("INSERT INTO nomes (nome) VALUES (:nome)");
+    $stmt->execute(['nome' => $nome]);
 }
 
 

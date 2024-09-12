@@ -1,10 +1,7 @@
 
-
-
-
 async function buscarDados(){
     try{
-        const response = await fetch("http://localhost:8080/listagem.php");
+        const response = await fetch("http://localhost:9000/listagem.php");
         if (response.ok){
             const nomes = await response.json();
             return nomes;
@@ -14,7 +11,7 @@ async function buscarDados(){
         }
     }
     catch(error){
-        alert("erro ao listar nomes");
+        console.log(error);
     }
 }
 
@@ -22,7 +19,7 @@ async function buscarDados(){
     const nomes = await buscarDados();
     let text = "";
     for(nome of nomes){
-        text += `<tr><td>${nome.id}</td><td>${nome.nome}</td></tr>`
+        text += `<tr><td>${nome.nome}</td></tr>`
     }
     document.getElementById('corpoTabela').innerHTML = text;
 })();

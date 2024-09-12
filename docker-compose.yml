@@ -1,0 +1,23 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    networks:
+      - my_network
+    depends_on:
+      - api
+
+  api:
+    image: php:8.1-cli
+    volumes:
+      - ./api:/var/www/html
+    ports:
+      - "9000:9000"
+    command: php -S 0.0.0.0:9000 -t /var/www/html
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
