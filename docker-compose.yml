@@ -1,6 +1,7 @@
 services:
   web:
     build: .
+    image : rodrigojorge12/meu-projeto
     ports:
       - "8080:80"
     networks:
